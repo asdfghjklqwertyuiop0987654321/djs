@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디스코드 봇 소개</title>
+    <style>
+        :root {
+            --primary-color: #7289da;
+            --secondary-color: #99aab5;
+            --background-color: #000122;
+            --text-color: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+        
+        .icon svg rect {
+            transition: fill 0.3s;
+        }
+        
+        .btn:hover .icon svg rect {
+            fill: var(--text-color);
+        }
+        
+        .text {
+            color: var(--text-color);
+            margin-left: 5px;
+            font-weight: bold;
+        }
+        
+        nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary-color);
+            padding: 0.5rem;
+        }
+        
+        nav.show {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h1, h2 {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #5b6eae;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--secondary-color);
+            margin-top: 2rem;
+        }
+        
+        /* New styles for feature cards */
+        .feature-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 50px;
+        }
+
+        .feature-container .glass {
+            position: relative;
+            width: 180px;
+            height: 200px;
+            background: linear-gradient(#fff2, transparent);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transform: rotate(calc(var(--r) * 1deg));
+        }
+
+        .feature-container:hover .glass {
+            cursor: pointer;
+            transform: rotate(0deg);
+        }
+
+        .feature-container .glass::before {
+            content: attr(data-text);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .feature-container .glass svg {
+            font-size: 2.5em;
+            fill: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>디스코드 봇 소개</h1>
+        <button class="btn" id="menuToggle">
+            <span class="icon">
+                <svg viewBox="0 0 175 80" width="40" height="40">
+                    <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                </svg>
+            </span>
+            <span class="text">MENU</span>
+        </button>
+    </header>
+    
+    <nav id="menu">
+        <a href="#features">기능</a>
+        <a href="#about">소개</a>
+        <a href="#contact">문의</a>
+    </nav>
+    
+    <main>
+        <section id="hero">
+            <h2>당신의 디스코드 서버를 더욱 강력하게</h2>
+            <p>우리의 봇으로 서버 관리를 자동화하고 사용자 경험을 향상시키세요.</p>
+            <a href="#" class="cta-button">지금 추가하기</a>
+        </section>
+        
+        <section id="features">
+            <h2>주요 기능</h2>
+            <div class="feature-container">
+                <div data-text="환영 메시지" style="--r: -15" class="glass">
+                    <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm0 319.91a20 20 0 1 1 20-20 20 20 0 0 1-20 20zm21.72-201.15-5.74 122a16 16 0 0 1-32 0l-5.74-121.94v-.05a21.74 21.74 0 1 1 43.44 0z"/>
+                    </svg>
+                </div>
+                <div data-text="음악 재생" style="--r: 5" class="glass">
+                    <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M470.38 1.51L150.41 96A32 32 0 0 0 128 126.51v261.41A139 139 0 0 0 96 384c-53 0-96 28.66-96 64s43 64 96 64 96-28.66 96-64V214.32l256-75v184.61a138.4 138.4 0 0 0-32-3.93c-53 0-96 28.66-96 64s43 64 96 64 96-28.65 96-64V32a32 32 0 0 0-41.62-30.49z"/>
+                    </svg>
+                </div>
+                <div data-text="서버 관리" style="--r: 25" class="glass">
+                    <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm0 384c-97.05 0-176-78.95-176-176S158.95 80 256 80s176 78.95 176 176-78.95 176-176 176zm48-176c0-8.84-7.16-16-16-16h-64c-8.84 0-16 7.16-16 16s7.16 16 16 16h64c8.84 0 16-7.16 16-16zm-16-64c8.84 0 16-7.16 16-16s-7.16-16-16-16h-64c-8.84 0-16 7.16-16 16s7.16 16 16 16h64zM256 400c26.51 0 48-21.49 48-48s-21.49-48-48-48-48 21.49-48 48 21.49 48 48 48z"/>
+                    </svg>
+                </div>
+                <div data-text="커스텀 명령어" style="--r: -5" class="glass">
+                    <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M478.33 433.6l-90-218a22 22 0 00-40.67 0l-90 218a22 22 0 1040.67 16.79L316.66 408h102.67l18.33 44.39A22 22 0 00458 464a22 22 0 0020.32-30.4zM334.83 368L368 281.65 401.17 368zm-66.99-19.08a22 22 0 00-4.89-30.7c-.2-.15-15-11.13-36.49-34.73 39.65-53.68 62.11-114.75 71.27-143.8H330a22 22 0 000-44H214V73.9a22 22 0 00-44 0v21.6h-116a22 22 0 000 44h191.5c-9.44 26.25-28.38 69.5-60 112.95-32.53-46.26-47.7-89.57-53.85-112.95H106a22 22 0 000 44h64.71c8.27 5.42 28.51 55.53 68.3 102.63-45.54 40.19-66.64 53.76-67 54.04a22 22 0 0025.82 35.73c.2-.15 54.73-39.82 125.62-127.63 26.11 31.85 49.128 66.24 69.94 105.13a22 22 0 0040.25-17.7"/></svg>
+                </div>
+                <div data-text="게임 통계" style="--r: 15" class="glass">
+                    <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about">
+            <h2>봇 소개</h2>
+            <p>우리의 디스코드 봇은 서버 관리자와 사용자 모두에게 최고의 경험을 제공하기 위해 개발되었습니다. 다양한 기능과 쉬운 사용법으로 여러분의 디스코드 생활을 더욱 풍부하게 만들어 드립니다.</p>
+        </section>
+        
+        <section id="contact">
+            <h2>문의하기</h2>
+            <p>궁금한 점이 있으신가요? 언제든 연락 주세요!</p>
+            <a href="mailto:contact@discordbot.com" class="cta-button">이메일 보내기</a>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 디스코드 봇. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const menu = document.getElementById('menu');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            menuToggle.addEventListener('click', ()
